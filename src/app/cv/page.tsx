@@ -1,7 +1,8 @@
 import React from "react";
 import style from './index.module.css';
-import headshot from './headshot.jpg';
-export default function FirstPost() {
+import headshot from '/public/headshot.jpg';
+import DownloadButton from "./DownloadButtom";
+export default function CVPage() {
     return (
         <div>
             <div id="whole_page">
@@ -138,20 +139,7 @@ export default function FirstPost() {
                     </ol>
                 </div>
             </div>
-            <div style={{ marginBottom: '3rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                <button 
-                    style={{ borderRadius: '5px', boxShadow: ' 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)', padding: '0.5rem', margin: '0 auto' }} 
-                    id="print_btn"
-                    onClick={()=>{
-                        var blob = new Blob(['cv-chinese.pdf'], {type: 'application/pdf'});
-                        var downloadLink = document.createElement('a');
-                        downloadLink.setAttribute('href', window.URL.createObjectURL(blob));
-                        downloadLink.setAttribute('download', '冯凡帆-前端.pdf');
-                        downloadLink.click();
-                    }}
-                > 下载简历 </button>
-            </div>
-            
+            <DownloadButton/>
         </div>
     )
 }
