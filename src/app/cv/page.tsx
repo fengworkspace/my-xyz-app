@@ -1,37 +1,62 @@
 import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import DownloadButton from "./DownloadButtom";
+import { InfoSection, ScrollToIdBtn } from "./components";
+import Link from 'next/link';
+
 export default function CVPage() {
     return (
-        <div>
-            <div id="whole_page">
-                <div style={{ maxWidth: '65rem', marginTop: ' 3rem ', marginLeft:'auto', marginRight:'auto' }}>
-                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                        <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
-                            <h1 style={{ marginBottom: 'auto', fontSize: '2rem' }}>冯凡帆</h1>
-                            <div>2 年前端工作经验 | 硕士 | 27 岁 | 男</div>
-                            <div>所在地：深圳</div>
-                            <div>Email: <a href="mailto:fanfan-feng@foxmail.com">fanfan-feng@foxmail.com</a> Tel:+86 15889499254
-                            </div>
+        <div className=" m-3 overflow-hidden">
+            <nav className="overflow-x-scroll whitespace-nowrap no-scrollbar ">
+                <ScrollToIdBtn id="head" text="简历下载" />
+                <ScrollToIdBtn id="basic" text="基本信息" />
+                <ScrollToIdBtn id="edu" text="教育经历" />
+                <ScrollToIdBtn id="job" text="工作经历" />
+                <ScrollToIdBtn id="self" text="个人评价" />
+            </nav>
+            <div className="flex flex-col gap-3 h-[590px] mt-3 overflow-scroll rounded-xl no-scrollbar">
+                <InfoSection id="head">
+                    <div className=" flex justify-center items-center flex-col p-3">
+                        <div className="rounded overflow-hidden">
+                            <Image src={"/headshot.jpg"} width={105} height={140} alt="头像" className="object-scale-down w-fit" />
                         </div>
-                        <Image src={"/headshot.jpg"} width={105} height={140}  alt="头像" />
+                        <div className="font-bold leading-10">你好，我叫冯凡帆</div>
+                        <div>前端工程师</div>
+                        <Link
+                            download={"cv-chinese.pdf"}
+                            className="bg-black text-white font-bold py-1 px-6 rounded-full lg:hover:bg-slate-700"
+                            href="/cv-chinese.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            locale={false}
+                        > 下载简历 </Link>
                     </div>
-                    <h2>教育经历</h2>
-                    <div style={{ display: 'flex', marginBottom:'1rem', flexWrap:'wrap'  }}>
+                </InfoSection>
+                <InfoSection title="基本信息" id="basic">
+                    <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+                        <div><Image src="/smile.svg" width={15} height={15} alt="mail logo" className="inline mr-1" />27 岁</div>
+                        <div> <Image src="/book.svg" width={15} height={15} alt="mail logo" className="inline mr-1" />硕士, 2 年前端工作经验</div>
+                        <div> <Image src="/map-pin.svg" width={15} height={15} alt="mail logo" className="inline mr-1" />广东，深圳</div>
+                        <div> <Image src="/mail.svg" width={15} height={15} alt="mail logo" className="inline mr-1" /><a href="mailto:fanfan-feng@foxmail.com">fanfan-feng@foxmail.com</a></div>
+                        <div> <Image src="/phone.svg" width={15} height={15} alt="phone logo" className="inline mr-1" />+86 15889499254</div>
+                    </div>
+                </InfoSection>
+                <InfoSection title="教育经历" id="edu">
+                    <div style={{ display: 'flex', marginBottom: '1rem', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 auto', fontWeight: 'bold' }}>诺丁汉大学 计算机科学 硕士</div>
                         <div>2019.9 - 2020.6</div>
                     </div>
-                    <div style={{ display: 'flex', marginBottom:'1rem', flexWrap:'wrap'  }}>
+                    <div style={{ display: 'flex', marginBottom: '1rem', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 auto', fontWeight: 'bold' }}>深圳大学 软件工程 本科</div>
                         <div>2014.9 - 2018.6</div>
                     </div>
-                    <h2>工作经历</h2>
-                    <div style={{ display: 'flex', marginBottom:'1rem', flexWrap:'wrap' }}>
+                </InfoSection>
+                <InfoSection title="工作经历" id="job">
+                    <div style={{ display: 'flex', marginBottom: '1rem', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 auto', fontWeight: 'bold' }}>深圳今日头条科技有限公司 Tiktok live FE 前端开发工程师</div>
                         <div>2021.3 - 2023.3</div>
                     </div>
-                    <div style={{ marginBottom:'1rem' }}>
+                    <div style={{ marginBottom: '1rem' }}>
                         团队技术栈:<br />
                         React.js, Koa.js, Typescript, Formily(表单框架)
                     </div>
@@ -130,16 +155,18 @@ export default function CVPage() {
                         </div>
                         <p>结果：平台上线后，大部分组件化活动通过该平台申请预算和活动资源，平台运转良好。后转交给同事进行迭代。</p>
                     </div>
-                    <h2>个人技能</h2>
+                </InfoSection>
+                <InfoSection title="个人技能" id="self">
                     <ol>
                         <li>熟练掌握 JS 语言,熟悉 Typescript 标准</li>
                         <li>熟练掌握 React 前端框架,并对 Vue 和 Angular 框架有接触</li>
                         <li>对前后端分离,BFF,微服务等架构在前端的应用有实践经验</li>
                         <li>有良好的软件工程,数据结构,算法运用的理论基础以及良好的学习能力</li>
                     </ol>
-                </div>
+                </InfoSection>
+
             </div>
-            <DownloadButton/>
+
         </div>
     )
 }
@@ -147,4 +174,4 @@ export default function CVPage() {
 export const metadata: Metadata = {
     title: "冯凡帆简历",
     description: "Generated by create next app",
-  };
+};
